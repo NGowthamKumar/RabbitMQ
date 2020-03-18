@@ -8,7 +8,7 @@ if (name == "publish"){
         connection.createChannel(function(error1, channel) {
             if (error1) { throw error1; }
             var queue = 'hello';
-            var msg = process.argv[3];
+            var msg = process.argv.slice(2).join(' ');
             channel.assertQueue(queue, { durable: false });
             channel.sendToQueue(queue, Buffer.from(msg));
             console.log(" [x] Sent %s", msg);
